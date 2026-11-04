@@ -12,7 +12,7 @@
           <img src="${root}assets/images/logo/logo.png" alt="Timetable Manager logo" />
           Timetable Manager
         </a>
-        <p class="footer-tagline" data-i18n="footerTagline">Perfect for everyday life.</p>
+        <p class="footer-tagline" data-i18n="footerTagline">Timetable, homework, exams and grades in one app.</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/timetablemanager.app" target="_blank" rel="noopener" aria-label="Instagram">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>

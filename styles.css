@@ -196,32 +196,40 @@ a {
   gap: 12px;
 }
 
+/* Language menu: a native select (options filled in by i18n.js), styled as a pill with a globe. */
 .lang-switch {
+  position: relative;
   display: inline-flex;
   align-items: center;
+  color: var(--ink);
+}
+
+.lang-switch svg {
+  position: absolute;
+  left: 11px;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+.lang-switch select {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 36px;
+  padding: 0 30px 0 34px;
   border: 1px solid var(--border);
   border-radius: 999px;
-  padding: 3px;
-  gap: 2px;
-}
-
-.lang-switch button {
-  border: none;
-  background: transparent;
-  color: var(--muted);
+  background: var(--surface) url("data:image/svg+xml;utf8,<svg fill='none' stroke='%236b6a72' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' height='14' viewBox='0 0 24 24' width='14' xmlns='http://www.w3.org/2000/svg'><path d='M6 9l6 6 6-6'/></svg>") no-repeat right 11px center;
+  color: inherit;
   font: inherit;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  padding: 5px 10px;
-  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: border-color 0.15s ease;
 }
 
-.lang-switch button.active {
-  background: var(--accent-soft);
-  color: var(--accent);
+.lang-switch select:hover {
+  border-color: var(--accent);
 }
 
 .theme-toggle {
@@ -629,69 +637,185 @@ section {
   background: var(--c);
 }
 
-/* ---------- Why it's free ---------- */
+/* ---------- Cover: an exercise book with a white name label (feedback, 404) ---------- */
+
+.cover {
+  --c: var(--s-green);
+  --flap: clamp(110px, 21vh, 210px);
+  position: relative;
+  overflow: hidden;
+  min-height: calc(100svh - 64px);
+  background-color: var(--c);
+  /* Light catching the plastic, then the grain. */
+  background-image: linear-gradient(118deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 34%,
+      rgba(255, 255, 255, 0.08) 58%, rgba(255, 255, 255, 0) 74%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0 0 0 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.cover > .wrap {
+  padding-top: 24px;
+  padding-bottom: calc(var(--flap) + 40px);
+}
+
+/* Fold-over flap along the bottom of the cover. */
+.flap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--flap);
+  background: color-mix(in srgb, color-mix(in srgb, var(--c) 78%, #0b0c14) 86%, transparent);
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 -10px 24px -14px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+.label {
+  /* White paper in either theme. */
+  --ink: #15161c;
+  --ink-soft: #3d4150;
+  --muted: #5f6579;
+  --bg: #ffffff;
+  --border: #e6dfd2;
+  position: relative;
+  z-index: 3;
+  max-width: 620px;
+  margin: 32px auto 0;
+  padding: 40px 42px 34px;
+  background: #fff;
+  color: var(--ink);
+  border-radius: 18px;
+  box-shadow: 0 1px 0 rgba(12, 14, 30, 0.08), 0 22px 44px -26px rgba(12, 14, 30, 0.6);
+  transform: rotate(-0.6deg);
+}
+
+/* The printed frame inside the label, in the cover's colour. */
+.label::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1.5px solid color-mix(in srgb, var(--c) 60%, #fff);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.label h1 {
+  font-size: clamp(36px, 4.6vw, 56px);
+  margin: 0 0 10px;
+}
+
+@media (max-width: 600px) {
+  .label {
+    padding: 32px 24px 28px;
+    transform: none;
+  }
+}
+
+/* ---------- Why it's free: a page of ruled paper ---------- */
+
+@font-face {
+  font-family: "Kalam";
+  src: url("assets/fonts/kalam-700-latin.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+.sheet {
+  /* Paper stays paper in dark mode too. */
+  --ink: #15161c;
+  --ink-soft: #3d4150;
+  --bg: #fafbfc;
+  position: relative;
+  color: var(--ink);
+  background-color: var(--bg);
+  /* Red margin line, then the blue rules. */
+  background-image: linear-gradient(90deg, transparent 0 calc(max(32px, (100% - var(--container)) / 2) + 96px - 1px),
+      #e7a3a3 0 calc(max(32px, (100% - var(--container)) / 2) + 96px + 1px), transparent 0),
+    repeating-linear-gradient(to bottom, transparent 0 35px, #d5deeb 35px 36px);
+  background-position: 0 0, 0 12px;
+  border-radius: 26px 26px 0 0;
+  box-shadow: 0 -14px 34px -16px rgba(12, 14, 30, 0.35);
+}
 
 .why {
-  padding-top: 40px;
+  margin-top: 40px;
+  padding: 108px 0;
 }
 
-.why-card {
+.why .wrap {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 48px;
-  align-items: center;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 28px;
-  padding: 56px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 64px;
+  align-items: start;
+  padding-left: 128px;
 }
 
-.why-card h2 {
-  font-size: clamp(32px, 4vw, 48px);
-  margin: 0 0 20px;
+.why h2 {
+  font-size: clamp(38px, 4.6vw, 66px);
+  margin: 0 0 24px;
 }
 
-.why-card p {
+.why p {
+  margin: 0 0 18px;
   color: var(--ink-soft);
-  margin: 0 0 16px;
+  max-width: 54ch;
+  line-height: 36px;
 }
 
-.why-card .btn {
-  margin-top: 8px;
+.why .btn {
+  margin-top: 12px;
 }
 
-.no-list {
+.crossed {
   list-style: none;
-  margin: 0;
+  margin: 8px 0 0;
   padding: 0;
   display: grid;
-  gap: 12px;
+  gap: 6px;
 }
 
-.no-list li {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 20px;
-  border-radius: var(--radius);
-  background: var(--bg-soft);
-  font-family: var(--font-display);
+.crossed li {
+  position: relative;
+  justify-self: start;
+  font-family: "Kalam", "Bradley Hand", "Segoe Print", cursive;
   font-weight: 700;
-  font-size: 20px;
+  font-size: clamp(44px, 5vw, 68px);
+  line-height: 1.15;
+  padding: 0 8px;
 }
 
-.no-list li::before {
-  content: "0";
-  width: 38px;
-  height: 38px;
-  flex: 0 0 auto;
-  border-radius: 12px;
-  background: var(--c);
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
+.crossed li:nth-child(2) { margin-left: 28px; }
+.crossed li:nth-child(3) { margin-left: 8px; }
+
+/* Struck through in red pen, drawn in once the list scrolls into view. */
+.crossed li::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  right: -10px;
+  top: 52%;
+  height: 6px;
+  border-radius: 6px;
+  background: #c8312f;
+  transform: rotate(-4deg);
+  transform-origin: left center;
+}
+
+.crossed li:nth-child(2)::after { transform: rotate(3deg); }
+
+.reveal-on .crossed li::after {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.reveal-on .crossed li:nth-child(2)::after { transition-delay: 0.55s; }
+.reveal-on .crossed li:nth-child(3)::after { transition-delay: 0.8s; }
+.reveal-on .reveal:not(.in) .crossed li::after { transform: rotate(-4deg) scaleX(0); }
+.reveal-on .reveal:not(.in) .crossed li:nth-child(2)::after { transform: rotate(3deg) scaleX(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on .crossed li::after {
+    transition: none;
+  }
 }
 
 /* ---------- Footer ---------- */
@@ -879,7 +1003,7 @@ section {
 @media (max-width: 960px) {
   .hero .wrap,
   .feature-row,
-  .why-card {
+  .why .wrap {
     grid-template-columns: 1fr;
   }
 
@@ -943,9 +1067,19 @@ section {
     max-width: 110px;
   }
 
-  .why-card {
-    padding: 36px 24px;
-    border-radius: 22px;
+  .why {
+    padding: 72px 0;
+  }
+
+  .why .wrap {
+    gap: 32px;
+    padding-left: 56px;
+  }
+
+  .sheet {
+    border-radius: 22px 22px 0 0;
+    background-image: linear-gradient(90deg, transparent 0 39px, #e7a3a3 39px 41px, transparent 0),
+      repeating-linear-gradient(to bottom, transparent 0 35px, #d5deeb 35px 36px);
   }
 
   .header-actions {

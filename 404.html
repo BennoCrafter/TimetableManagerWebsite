@@ -19,43 +19,47 @@
     <link rel="stylesheet" href="/styles.css" />
     <style>
       .lost {
-        padding: 96px 0 120px;
+        --c: var(--s-slate);
+      }
+
+      .lost .label {
+        margin-top: 8vh;
         text-align: center;
       }
 
+      /* The book's subject line, still blank: this page doesn't exist. */
       .lost .slot {
         display: inline-block;
         font-size: 15px;
-        font-weight: 600;
+        font-weight: 650;
+        letter-spacing: 0.08em;
         color: var(--muted);
-        border: 1.5px dashed var(--border);
+        border: 1.5px dashed #c9cfdc;
         border-radius: 9px;
-        padding: 8px 18px;
-        margin-bottom: 28px;
-      }
-
-      .lost h1 {
-        font-size: clamp(48px, 8vw, 88px);
-        margin: 0 0 16px;
+        padding: 6px 16px;
+        margin: 8px 0 22px;
       }
 
       .lost p {
         color: var(--ink-soft);
-        margin: 0 auto 32px;
-        max-width: 40ch;
+        margin: 0 auto 28px;
+        max-width: 36ch;
       }
     </style>
   </head>
   <body>
     <header class="site-header" data-cta="home"></header>
 
-    <section class="lost">
+    <section class="cover lost">
       <div class="wrap">
-        <span class="slot">404</span>
-        <h1 data-i18n="lostTitle">Free period.</h1>
-        <p data-i18n="lostText">This page skipped class. It doesn't exist, or it has moved.</p>
-        <a class="btn btn-primary" href="/" data-i18n="navBackHome">Back to home</a>
+        <div class="label">
+          <span class="slot">404</span>
+          <h1 data-i18n="lostTitle">Free period.</h1>
+          <p data-i18n="lostText">This page skipped class. It doesn't exist, or it has moved.</p>
+          <a class="btn btn-primary" href="/" data-i18n="navBackHome">Back to home</a>
+        </div>
       </div>
+      <div class="flap"></div>
     </section>
 
     <footer class="site-footer"></footer>
@@ -69,6 +73,14 @@
         de: {
           lostTitle: "Freistunde.",
           lostText: "Diese Seite schwänzt. Es gibt sie nicht, oder sie ist umgezogen.",
+        },
+        fr: {
+          lostTitle: "Heure de permanence.",
+          lostText: "Cette page sèche les cours. Elle n'existe pas, ou elle a déménagé.",
+        },
+        es: {
+          lostTitle: "Hora libre.",
+          lostText: "Esta página se ha saltado la clase. No existe o se ha mudado.",
         },
       };
     </script>

@@ -15,8 +15,8 @@ node --test tests/               # API tests + checks langs*/index.html are up t
 
 ## Open Source
 
-Timetable Manager is a genuine passion project of mine. I've put a lot of time, care, and effort into making it something I'm truly proud of.
+Timetable Manager is a project I've put a lot of heart and time into. I've been working on it for years now, and I'm genuinely proud of far it came.
 
-I'd also love to open-source the actual app someday. However, I'm still a little hesitant, as I'd be worried about clones and unauthorized redistribution. I'm still figuring out what the right balance between sharing my work and protecting something would look like.
+I'd really love to open-source the app someday. I'm personally a big fan of open-source software and love the idea of sharing something I've built with others, allowing people to learn from it, contribute to it, and make it their own. At the same time, I'm still a little hesitant about making the entire app public. The possibility of people creating clones or redistributing it without permission is something I'd like to avoid.
 
-For now, this repository contains the website only.
+For now, this repository only contains the website.

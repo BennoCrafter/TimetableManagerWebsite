@@ -27,6 +27,15 @@
         />
         <link rel="stylesheet" href="styles.css" />
         <style>
+            /* Keep the whole card above the fold on open. */
+            .cover.feedback > .wrap {
+                padding-top: 16px;
+            }
+
+            .cover.feedback .label {
+                margin-top: 0;
+            }
+
             .form-intro {
                 margin: 0 0 28px;
                 color: var(--ink-soft);
@@ -344,12 +353,22 @@
                         "block";
                     document.getElementById("successMessage").style.display =
                         "none";
+                    scrollToCard("formContainer");
                 });
 
             function showSuccessMessage() {
                 document.getElementById("formContainer").style.display = "none";
                 document.getElementById("successMessage").style.display =
                     "block";
+                scrollToCard("successMessage");
+            }
+
+            // The swapped-in card can land off-screen when the user scrolled down to submit.
+            function scrollToCard(id) {
+                document.getElementById(id).scrollIntoView({
+                    block: "center",
+                    behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+                });
             }
         </script>
     </body>

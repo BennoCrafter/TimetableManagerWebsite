@@ -3,7 +3,7 @@
 // live in COMMON below; page-specific strings come from window.TRANSLATIONS defined inline in each page.
 // Language priority: ?lang= query param, then saved choice, then browser language.
 //
-// Pages that exist once per language (the homepage: /, /de/, /fr/, /es/, see scripts/build-langs.mjs)
+// Pages that exist once per language (the homepage: /, /de/, /fr/, /es/, /zh/, see scripts/build-langs.mjs)
 // are written in their language directly, so search engines can index each. They name their
 // counterparts' URLs, e.g. <html lang="en" data-url-de="de/index.html" …>; on those pages the language
 // menu navigates instead of translating in place. Load this in <head> so the redirect below happens
@@ -13,7 +13,7 @@
   var root = document.documentElement;
 
   // Code → name in its own language, as shown in the menu.
-  var LANGS = { en: "English", de: "Deutsch", fr: "Français", es: "Español" };
+  var LANGS = { en: "English", de: "Deutsch", fr: "Français", es: "Español", zh: "简体中文" };
 
   function known(lang) {
     return Object.prototype.hasOwnProperty.call(LANGS, lang);
@@ -68,6 +68,17 @@
       footerImprint: "Aviso legal",
       footerFeedback: "Enviar comentarios",
       footerCopyright: "© 2027 Timetable Manager. Todos los derechos reservados.",
+    },
+    zh: {
+      navGetApp: "在 App Store 下载",
+      navBackHome: "返回首页",
+      navKofi: "在 Ko-fi 上支持我",
+      footerTagline: "课程表、作业、考试和成绩，集于一个 App。",
+      footerContact: "联系我们",
+      footerPrivacy: "隐私政策",
+      footerImprint: "法律声明",
+      footerFeedback: "提供反馈",
+      footerCopyright: "© 2027 Timetable Manager。保留所有权利。",
     },
   };
 

@@ -1,4 +1,4 @@
-// Generates the homepage in every other language (de/, fr/, es/ index.html) from index.html +
+// Generates the homepage in every other language (de/, fr/, es/, zh/ index.html) from index.html +
 // translations/home.<lang>.json, so Google can index a real page per language.
 // Run after editing either:  node scripts/build-langs.mjs   (tests/ fail if you forget)
 //
@@ -10,7 +10,7 @@
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 
-export const LANGS = ["de", "fr", "es"];
+export const LANGS = ["de", "fr", "es", "zh"];
 
 const SITE = "https://www.timetablemanager.app";
 const SOURCE = fileURLToPath(new URL("../index.html", import.meta.url));

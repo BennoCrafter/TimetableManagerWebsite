@@ -19,12 +19,6 @@
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="assets/images/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400..800&amp;display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -36,12 +30,17 @@
 
     <section class="content-card">
       <div class="wrap">
+        <h2 data-i18n="responsible">Responsible for this website and the app</h2>
         <address>
           Benno Productions<br />Baumeister<br />
-          John-Skilton-Straße 8<br />97074 Würzburg<br /><br />
-          <a href="mailto:timetablemanager.contact@gmail.com">timetablemanager.contact@gmail.com</a><br /><br />
-          <span data-i18n="representedBy">Represented by: Dr. Joachim Baumeister</span>
+          John-Skilton-Straße 8<br />97074 Würzburg
         </address>
+
+        <h2 data-i18n="representedBy">Represented by</h2>
+        <address>Dr. Joachim Baumeister</address>
+
+        <h2 data-i18n="contact">Contact</h2>
+        <address><a href="mailto:timetablemanager.contact@gmail.com">timetablemanager.contact@gmail.com</a></address>
       </div>
     </section>
 
@@ -51,25 +50,20 @@
       window.TRANSLATIONS = {
         en: {
           pageTitle: "Imprint",
-          representedBy: "Represented by: Dr. Joachim Baumeister",
+          responsible: "Responsible for this website and the app",
+          representedBy: "Represented by",
+          contact: "Contact",
         },
         de: {
           pageTitle: "Impressum",
-          representedBy: "Vertreten durch: Dr. Joachim Baumeister",
-        },
-        fr: {
-          pageTitle: "Mentions légales",
-          representedBy: "Représenté par : Dr. Joachim Baumeister",
-        },
-        es: {
-          pageTitle: "Aviso legal",
-          representedBy: "Representado por: Dr. Joachim Baumeister",
-        },
-        zh: {
-          pageTitle: "法律声明",
-          representedBy: "代表人：Dr. Joachim Baumeister",
+          responsible: "Verantwortlich für diese Website und die App",
+          representedBy: "Vertreten durch",
+          contact: "Kontakt",
         },
       };
+      // The imprint is German and English only; other languages show English
+      // (set explicitly so switching in place from German doesn't leave German behind).
+      window.TRANSLATIONS.fr = window.TRANSLATIONS.es = window.TRANSLATIONS.zh = window.TRANSLATIONS.en;
     </script>
     <script src="assets/js/header.js"></script>
     <script src="assets/js/footer.js"></script>

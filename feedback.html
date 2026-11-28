@@ -19,12 +19,6 @@
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="icon" href="assets/images/favicon.png" type="image/png" />
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Rubik:wght@400..800&amp;display=swap"
-          rel="stylesheet"
-        />
         <link rel="stylesheet" href="styles.css" />
         <style>
             /* Keep the whole card above the fold on open. */
@@ -152,13 +146,21 @@
                 font-size: 16px;
             }
 
+            /* Grayed out until a type is picked and a description written. */
             .label .btn-primary:disabled {
-                opacity: 0.6;
+                opacity: 0.35;
                 cursor: not-allowed;
             }
 
             .success-message {
                 display: none;
+            }
+
+            .form-note {
+                margin: 14px 0 0;
+                font-size: 14px;
+                opacity: 0.75;
+                text-align: center;
             }
 
             .success-message p {
@@ -184,17 +186,6 @@
                     </fieldset>
 
                     <div class="form-group">
-                        <label for="titleInput" data-i18n="titleLabel">Title</label>
-                        <input
-                            type="text"
-                            id="titleInput"
-                            data-i18n-placeholder="titlePlaceholder"
-                            placeholder="Brief summary of your feedback"
-                            required
-                        />
-                    </div>
-
-                    <div class="form-group">
                         <label for="description" data-i18n="descriptionLabel"
                             >Description</label
                         >
@@ -203,13 +194,17 @@
                             data-i18n-placeholder="descriptionPlaceholder"
                             placeholder="Please provide details about your feedback..."
                             required
-                            rows="5"
+                            maxlength="2000"
+                            rows="6"
                         ></textarea>
                     </div>
+                    <!-- Honeypot: hidden from people, filled in by spam bots. -->
+                    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden" />
 
-                    <button type="submit" class="btn btn-primary" id="submitBtn" data-i18n="submit">
+                    <button type="submit" class="btn btn-primary" id="submitBtn" data-i18n="submit" disabled>
                         Submit Feedback
                     </button>
+                    <p class="form-note" data-i18n="formNote">No name or email needed. Your message and your language are sent to a private Discord channel.</p>
                 </form>
             </div>
 
@@ -229,14 +224,14 @@
         <script>
             window.TRANSLATIONS = {
                 en: {
+                    formNote: "No name or email needed. Your message and your language are sent to a private Discord channel.",
+                    errorMessage: "That didn't go through. Please try again in a moment.",
                     formIntro: "Found a bug or have an idea? Let us know.",
                     title: "Share Your Feedback",
                     feedbackType: "Feedback Type",
                     bug: "Bug Report",
                     enhancement: "Feature Request",
                     other: "Other",
-                    titleLabel: "Title",
-                    titlePlaceholder: "Brief summary of your feedback",
                     descriptionLabel: "Description",
                     descriptionPlaceholder: "Please provide details about your feedback...",
                     submit: "Submit Feedback",
@@ -245,14 +240,14 @@
                     newFeedback: "Submit Another Feedback",
                 },
                 de: {
+                    formNote: "Kein Name und keine E-Mail nötig. Deine Nachricht und deine Sprache werden an einen privaten Discord-Kanal gesendet.",
+                    errorMessage: "Das hat gerade nicht geklappt. Versuch es bitte gleich noch einmal.",
                     formIntro: "Hast du einen Fehler gefunden oder eine Idee? Lass es uns wissen.",
                     title: "Teile dein Feedback",
                     feedbackType: "Feedback-Typ",
                     bug: "Fehler",
                     enhancement: "Neue Funktion",
                     other: "Sonstiges",
-                    titleLabel: "Titel",
-                    titlePlaceholder: "Kurze Zusammenfassung",
                     descriptionLabel: "Beschreibung",
                     descriptionPlaceholder: "Bitte gebe Details zu deinem Feedback an...",
                     submit: "Feedback senden",
@@ -261,14 +256,14 @@
                     newFeedback: "Weiteres Feedback senden",
                 },
                 fr: {
+                    formNote: "Ni nom ni e-mail. Ton message et ta langue sont envoyés sur un salon Discord privé.",
+                    errorMessage: "L'envoi n'a pas fonctionné. Réessaie dans un instant.",
                     formIntro: "Tu as trouvé un bug ou tu as une idée ? Dis-le-nous.",
                     title: "Donne ton avis",
                     feedbackType: "Type de retour",
                     bug: "Bug",
                     enhancement: "Nouvelle fonction",
                     other: "Autre",
-                    titleLabel: "Titre",
-                    titlePlaceholder: "Résumé en quelques mots",
                     descriptionLabel: "Description",
                     descriptionPlaceholder: "Donne-nous des détails sur ton retour...",
                     submit: "Envoyer",
@@ -277,14 +272,14 @@
                     newFeedback: "Envoyer un autre retour",
                 },
                 es: {
+                    formNote: "Sin nombre ni correo. Tu mensaje y tu idioma se envían a un canal privado de Discord.",
+                    errorMessage: "No se pudo enviar. Inténtalo de nuevo en un momento.",
                     formIntro: "¿Has encontrado un error o tienes una idea? Cuéntanoslo.",
                     title: "Danos tu opinión",
                     feedbackType: "Tipo de comentario",
                     bug: "Error",
                     enhancement: "Nueva función",
                     other: "Otro",
-                    titleLabel: "Título",
-                    titlePlaceholder: "Resumen breve",
                     descriptionLabel: "Descripción",
                     descriptionPlaceholder: "Danos detalles sobre tu comentario...",
                     submit: "Enviar",
@@ -293,14 +288,14 @@
                     newFeedback: "Enviar otro comentario",
                 },
                 zh: {
+                    formNote: "无需姓名或邮箱。你的留言和语言会发送到一个私密的 Discord 频道。",
+                    errorMessage: "提交失败，请稍后再试。",
                     formIntro: "发现了 bug 或有新想法？告诉我们吧。",
                     title: "分享你的反馈",
                     feedbackType: "反馈类型",
                     bug: "Bug 报告",
                     enhancement: "功能建议",
                     other: "其他",
-                    titleLabel: "标题",
-                    titlePlaceholder: "简要概括你的反馈",
                     descriptionLabel: "描述",
                     descriptionPlaceholder: "请详细描述你的反馈……",
                     submit: "提交反馈",
@@ -314,36 +309,41 @@
         <script src="assets/js/footer.js"></script>
 
         <script>
+            const feedbackForm = document.getElementById("feedbackForm");
+            function updateSubmit() {
+                document.getElementById("submitBtn").disabled =
+                    !feedbackForm.querySelector('input[name="feedbackType"]:checked') ||
+                    !document.getElementById("description").value.trim();
+            }
+            feedbackForm.addEventListener("input", updateSubmit);
+            feedbackForm.addEventListener("change", updateSubmit);
+            updateSubmit();
+
             document
                 .getElementById("feedbackForm")
                 .addEventListener("submit", async function (e) {
                     e.preventDefault();
                     document.getElementById("submitBtn").disabled = true;
 
-                    const issueTitle =
-                        document.getElementById("titleInput").value;
-                    const issueDescription =
-                        document.getElementById("description").value;
-                    const issueType =
-                        document.querySelector('input[name="feedbackType"]:checked').value;
-                    const currentLang =
-                        (document.documentElement.lang || "en").split("-")[0];
-
-                    const githubIssue = {
-                        title: issueTitle,
-                        body: issueDescription,
-                        labels: [
-                            issueType,
-                            "external-feedback-issue",
-                            `lang-${currentLang}`,
-                        ],
-                    };
+                    const form = document.getElementById("feedbackForm");
+                    const type = form.querySelector('input[name="feedbackType"]:checked').value;
+                    const lang = (document.documentElement.lang || "en").split("-")[0];
 
                     try {
-                        const response = await fetch("/api/create-issue", {
+                        // The shared feedback backend on bennowo.de posts this to Discord (see its README).
+                        // Served locally or opened as a file, it goes to the portfolio's dev server (`npm start` there).
+                        const local = ["localhost", "127.0.0.1", ""].includes(location.hostname);
+                        const endpoint = local ? "http://localhost:3002/api/feedback" : "https://www.bennowo.de/api/feedback";
+                        const response = await fetch(endpoint, {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify(githubIssue),
+                            body: JSON.stringify({
+                                app: "timetable",
+                                type: type === "enhancement" ? "idea" : type,
+                                message: document.getElementById("description").value,
+                                lang,
+                                website: form.elements.website.value,
+                            }),
                         });
 
                         if (!response.ok) {
@@ -353,11 +353,10 @@
                         showSuccessMessage();
                     } catch (error) {
                         console.error("Error:", error);
-                        alert(
-                            "There was an error submitting your feedback. Please try again.",
-                        );
+                        const lang = (document.documentElement.lang || "en").split("-")[0];
+                        alert((window.TRANSLATIONS[lang] || window.TRANSLATIONS.en).errorMessage);
                     } finally {
-                        document.getElementById("submitBtn").disabled = false;
+                        updateSubmit();
                     }
                 });
 
@@ -365,6 +364,7 @@
                 .getElementById("newFeedbackBtn")
                 .addEventListener("click", function () {
                     document.getElementById("feedbackForm").reset();
+                    updateSubmit();
                     document.getElementById("formContainer").style.display =
                         "block";
                     document.getElementById("successMessage").style.display =
